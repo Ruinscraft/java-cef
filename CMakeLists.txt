@@ -126,7 +126,8 @@ set_property(GLOBAL PROPERTY OS_FOLDERS ON)
 
 # Specify the CEF distribution version.
 if(NOT DEFINED CEF_VERSION)
-  set(CEF_VERSION "88.2.6+gd717f0e+chromium-88.0.4324.150")
+# cef_binary_88.0.0-master.2289+g119415b+chromium-88.0.4324.0_macosx64_minimal
+  set(CEF_VERSION "88.0.0-master.2289+g119415b+chromium-88.0.4324.0")
 endif()
 
 # Determine the platform.
@@ -134,7 +135,7 @@ if("${CMAKE_SYSTEM_NAME}" STREQUAL "Darwin")
   if("${PROJECT_ARCH}" STREQUAL "arm64")
     set(CEF_PLATFORM "macosarm64")
   else()
-    set(CEF_PLATFORM "macosx64")
+    set(CEF_PLATFORM "macosx64_minimal")
   endif()
 elseif("${CMAKE_SYSTEM_NAME}" STREQUAL "Linux")
   if(CMAKE_SIZEOF_VOID_P MATCHES 8)
@@ -201,10 +202,10 @@ set(JAVA_FATAL_ERROR "A Java installation is required. Set the JAVA_HOME "
                      "installation directory.")
 
 # Find the Java Native Interface (JNI) installation.
-find_package(JNI ${JDK_MIN_VERSION})
-if(NOT ${JNI_FOUND})
-  message(FATAL_ERROR ${JAVA_FATAL_ERROR})
-endif()
+#find_package(JNI ${JDK_MIN_VERSION})
+#if(NOT ${JNI_FOUND})
+#  message(FATAL_ERROR ${JAVA_FATAL_ERROR})
+#endif()
 
 if(OS_MACOSX)
   # OS X stores the Java binaries separately from the JNI includes/libraries.

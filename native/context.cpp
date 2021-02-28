@@ -2,6 +2,8 @@
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 
+#include <iostream>
+
 #include "context.h"
 
 #include "include/cef_app.h"
@@ -101,6 +103,16 @@ CefSettings GetJNISettings(JNIEnv* env, jobject obj) {
     CefString(&settings.locales_dir_path) = tmp;
     tmp.clear();
   }
+  if (GetJNIFieldString(env, cls, obj, "framework_dir_path", &tmp) &&
+    !tmp.empty()) {
+    CefString(&settings.framework_dir_path) = tmp;
+    tmp.clear();
+  }
+  if (GetJNIFieldString(env, cls, obj, "main_bundle_path", &tmp) &&
+    !tmp.empty()) {
+    CefString(&settings.main_bundle_path) = tmp;
+    tmp.clear();
+  }
   GetJNIFieldBoolean(env, cls, obj, "pack_loading_disabled",
                      &settings.pack_loading_disabled);
   GetJNIFieldInt(env, cls, obj, "remote_debugging_port",
@@ -174,6 +186,8 @@ bool Context::Initialize(JNIEnv* env,
 #endif
 
   CefSettings settings = GetJNISettings(env, jsettings);
+
+  std::cout << "Framework: " << settings.framework_dir_path.str << std::endl;
 
   // Sandbox is not supported because:
   // - Use of a separate sub-process executable on Windows.
