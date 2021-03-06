@@ -105,7 +105,7 @@ Java_org_cef_CefApp_N_1Startup(JNIEnv* env,
     }
   }
   framework_path += "/Chromium Embedded Framework";
-  std::cout << "Framework " << framework_path.c_str() << std::endl;
+  std::cout << "MacOS CEF Framework: " << framework_path.c_str() << std::endl;
 
   // Load the CEF framework library at runtime instead of linking directly
   // as required by the macOS sandbox implementation.

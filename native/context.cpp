@@ -2,8 +2,6 @@
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 
-#include <iostream>
-
 #include "context.h"
 
 #include "include/cef_app.h"
@@ -186,8 +184,6 @@ bool Context::Initialize(JNIEnv* env,
 #endif
 
   CefSettings settings = GetJNISettings(env, jsettings);
-
-  std::cout << "Framework: " << settings.framework_dir_path.str << std::endl;
 
   // Sandbox is not supported because:
   // - Use of a separate sub-process executable on Windows.
